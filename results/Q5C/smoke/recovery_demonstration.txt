@@ -1,0 +1,10 @@
+Q5(C): known symbol timing; frame position unknown to receiver.
+CRC check 123456789: 29B1 (expected 29B1)
+
+4-FSK clean: frame start=1, CRC=A327, recovered=240953668|240953568|240953138|240953634
+Guarded: prefix=5 symbols, true start=11, detected start=11, CRC OK=1
+Intentional payload-bit corruption: status=crc_failed, CRC OK=0
+
+8-FSK clean: frame start=1, CRC=A327, recovered=240953668|240953568|240953138|240953634
+Guarded: prefix=5 symbols, true start=16, detected start=16, CRC OK=1
+Intentional payload-bit corruption: status=crc_failed, CRC OK=0

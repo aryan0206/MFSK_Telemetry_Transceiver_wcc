@@ -1,0 +1,11 @@
+Profile: final
+MATLAB: 2026b
+Conditions completed: 160 of 160
+Frames: 160000
+Payload bits evaluated: 49920000
+Elapsed processing seconds: 162.336
+BER: Raw payload BER; known evaluation alignment; all payload bits
+PER: No CRC-valid frame at correct location with exact payload
+PER intervals: Two-sided 95 percent Wilson
+Timing: Known symbol timing and tones; unknown frame location
+Checkpoints resume only with matching source and configuration hashes.

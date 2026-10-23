@@ -1,0 +1,1 @@
+All 160,000 per-trial records reproduced exactly in a second full run.

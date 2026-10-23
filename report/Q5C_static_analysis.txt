@@ -1,0 +1,15 @@
+MATLAB 2026b; source analysis via checkcode -id
+mfsk_detect.m: 0 messages
+prepare_mfsk_detector.m: 0 messages
+crc16_ccitt_false.m: 0 messages
+decode_telemetry_frame.m: 0 messages
+evaluate_telemetry_trial.m: 0 messages
+q5c_guarded_stream.m: 0 messages
+q5c_plot_results.m: 0 messages
+q5c_protocol.m: 0 messages
+q5c_receiver_evidence.m: 0 messages
+q5c_wilson_interval.m: 0 messages
+run_q5c_receiver.m: 0 messages
+test_q5c_receiver.m: 0 messages
+Required products: MATLAB
+Total Code Analyzer messages: 0
