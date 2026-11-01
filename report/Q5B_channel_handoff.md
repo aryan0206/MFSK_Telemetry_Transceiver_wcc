@@ -1,8 +1,8 @@
-# Q5(B) channel: standalone handoff
+# Q5(B) channel specification and calibration
 
-The repository has a short README and Rashmi's Q5(A) transmitter script; no
-group execution guide was present when this component was prepared. This is
-only the channel section. It makes no receiver or BER/PER assumptions.
+This document records the completed Q5(B) AWGN and narrowband interference
+model and its channel-calibration experiment. The integrated receiver sweep
+is documented separately in `FINAL_TEST_AND_EXPERIMENT_EVIDENCE.md`.
 
 ## Function contract
 
@@ -38,17 +38,15 @@ the actual finite sample vector, so `meta.measuredJSRdB` matches the requested
 JSR to numerical precision. `meta` also reports the seed, phase, frequency,
 sample count, gross bit rate and measured noise/Jammer powers.
 
-## Q5(A) input for later integration
+## Q5(A) input and integrated interface
 
-Use an explicit path to Rashmi's saved `results/transmitter_data.mat` and
+Use an explicit path to `results/transmitter_data.mat` and
 select `signals{q}` with `M = Mvalues(q)` and `tones{q}`. The matching elements
 are 4-FSK for `q=1` and 8-FSK for `q=2`. Q5(A) uses 80 samples per symbol and
 generates a real unit-amplitude sine whose phase restarts at each symbol.
 The channel adds impairments sample by sample and preserves symbol timing.
 No transmitter workspace variables are required once the MAT file is loaded.
-The existing transmitter script itself saves into MATLAB's Current Folder,
-so integration should load a known path rather than assume where a fresh run
-placed its output.
+The transmitter script writes to the repository's `results/` directory.
 
 Example in MATLAB, with this repository as Current Folder:
 
@@ -96,5 +94,6 @@ run_q5b_channel
 component addition, requested finite-record JSR, approximate measured AWGN
 power over a long signal, global RNG isolation, no-impairment pass-through,
 and pass-through of Q5(A) saved waveforms when the MAT file is available.
-Run the tests before the experiment and cite measured Q5(B) data or figures
-only after that run succeeds.
+The final MATLAB R2026b run generated 160 Q5(B) calibration cases, and the
+complete test suite passed 2/2. These calibration outputs remain separate
+from the receiver-based BER/PER dataset in `results/Q5_end_to_end/`.

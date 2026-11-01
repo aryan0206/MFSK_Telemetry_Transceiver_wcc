@@ -1,5 +1,8 @@
 % QUESTION 5A: 4-FSK and 8-FSK transmitter. Click Run in MATLAB.
 clear; clc; close all;
+repoRoot = fileparts(fileparts(mfilename('fullpath')));
+outputDir = fullfile(repoRoot, 'results');
+if ~isfolder(outputDir), mkdir(outputDir); end
 
 %% 1. Input data and settings
 numbers = {'240953668','240953568','240953138','240953634'};
@@ -97,7 +100,7 @@ for q = 1:2
     xlabel('Tone index'); ylabel('Frequency (Hz)');
     title(sprintf('%d-FSK tone allocation', Mvalues(q)));
 end
-print(figure(1), 'Fig1_Tone_Allocation.png', '-dpng', '-r200');
+print(figure(1), fullfile(outputDir,'Fig1_Tone_Allocation.png'), '-dpng', '-r200');
 
 %% 5. Plot the first three symbols of each waveform
 figure(2);
@@ -114,7 +117,7 @@ for q = 1:2
     plot([2000*Ts 2000*Ts], verticalRange, 'r--', 'LineWidth', 1.2);
     hold off;
 end
-print(figure(2), 'Fig2_Transmit_Waveform.png', '-dpng', '-r200');
+print(figure(2), fullfile(outputDir,'Fig2_Transmit_Waveform.png'), '-dpng', '-r200');
 
 %% 6. Plot a power spectral density estimate using an FFT
 figure(3);
@@ -131,10 +134,10 @@ for q = 1:2
     xlabel('Frequency (Hz)'); ylabel('PSD estimate (dB/Hz)');
     title(sprintf('%d-FSK power spectral density', Mvalues(q)));
 end
-print(figure(3), 'Fig3_Power_Spectral_Density.png', '-dpng', '-r200');
+print(figure(3), fullfile(outputDir,'Fig3_Power_Spectral_Density.png'), '-dpng', '-r200');
 
 %% 7. Save the clean signals for the group members doing B and C
-save('transmitter_data.mat', 'signals', 'tones', 'symbolTones', ...
+save(fullfile(outputDir,'transmitter_data.mat'), 'signals', 'tones', 'symbolTones', ...
     'frameBits', 'frameBytes', 'payloadText', 'crc', 'Mvalues', ...
     'paddingBits', 'Rs', 'Fs', 'Ts', 'fc', 'spacing');
-disp('Finished. Three figures and transmitter_data.mat are in Current Folder.');
+disp('Finished. Three figures and transmitter_data.mat are in results/.');

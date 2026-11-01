@@ -91,8 +91,7 @@ for n=1:numel(sourceList)
     sourceHashes.(matlab.lang.makeValidName(entry.name))= ...
         file_hash(fullfile(entry.folder,entry.name));
 end
-[status,revision]=system(sprintf('git -C "%s" rev-parse HEAD',root));
-if status~=0, revision='unavailable'; end
+revision='not-recorded'; % No Git command is needed for reproducibility.
 inputNames={'transmitter_data.mat',fullfile('Q5B','Q5B_channel_cases.mat')};
 inputHashes=cellfun(@(f) file_hash(fullfile(root,'results',f)),inputNames, ...
     'UniformOutput',false);
@@ -267,9 +266,10 @@ value=sha256(fread(fid,Inf,'*uint8'));
 end
 
 function value=sha256(bytes)
-digest=java.security.MessageDigest.getInstance('SHA-256');
-digest.update(bytes);
-value=lower(reshape(dec2hex(typecast(digest.digest(),'uint8'),2).',1,[]));
+hasher=System.Security.Cryptography.SHA256.Create;
+digest=hasher.ComputeHash(uint8(bytes));
+value=lower(reshape(dec2hex(uint8(digest),2).',1,[]));
+hasher.Dispose();
 end
 
 function write_run_info(out,summary,config,seconds)
